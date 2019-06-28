@@ -1,0 +1,24 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+.container > h1{
+    text-align: center;
+}
+.main{
+    margin: 50px auto;
+    width:50%;
+    background-color: rgb(127, 175, 159);
+    height: 600px;
+}
+.sub{
+    width:33%;
+    float: left;
+    padding: 5% 0px;
+}
+.sub > h3{
+    text-align: center;
+    margin: 0px;
+}
+.sub > input{
+    
+}
