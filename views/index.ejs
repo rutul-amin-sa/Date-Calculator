@@ -21,85 +21,58 @@
                 <div class="sub">
                     <h3>Age</h3>
                     <form action="/age" method="POST">
-                        <input type="date" name="date" class="form-input" placeholder="DOB" id="age_date" required>
+                        <div class="form-group">
+                            <input type="date" name="date" class="form-control" placeholder="DOB" id="age_date" required>
+                        </div>
                         <button>Submit</button>
                     </form>
                     <% if(obj.input.Date != ""){ %>
-                    <span>
-                        <%= obj.output.Year + " Years, " + obj.output.Month + " Month, " + obj.output.Days + "Days" %>
-                    </span>
+                    <div>
+                        <%= obj.output.Year %> Years, <%= obj.output.Month %> Month, <%= obj.output.Days %> Days %>
+                    </div>
                     <% } %>
                 </div>
+                <div class="sub">
+                        <h3>Add Days</h3>
+                        <form action="/adddays" method="POST">
+                            <div class="form-group">
+                                <input type="date" name="date" class="form-control" placeholder="DOB" id="adddays_date" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="days" class="form-control" placeholder="Days" id="adddays_days" required>
+                            </div>
+                            <button>Submit</button>
+                        </form>
+                        <% if(obj.input.Date!="" && obj.input.Days!=""){ %>
+                            <div>New Date: <%= obj.output.Date%></div>
+                        <% } %>
+                    </div>
                 <div class="sub">
                     <h3>Reverse Age</h3>
                     <form action="/rage" method="POST">
-                        <input type="text" name="year" placeholder="Year" id="rage_year" required>
-                        <select required name="month">
-                            <option value="">- Month -</option>
-                            <option value="00">00</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                        </select>
-                        <select required name="day">
-                            <option value="">- Day -</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
-                            <option value="24">24</option>
-                            <option value="25">25</option>
-                            <option value="26">26</option>
-                            <option value="27">27</option>
-                            <option value="28">28</option>
-                            <option value="29">29</option>
-                            <option value="30">30</option>
-                            <option value="31">31</option>
-                        </select>
+                        <div class="form-group">
+                            <input type="text" name="year" class="form-control" placeholder="Year" id="rage_year" required>
+                        </div>
+                        <div class="form-group">
+                            <select required name="month" class="form-control">
+                                <option value="">- Month -</option>
+                                <% for(var i = 0 ; i <= 12; i++){ %>
+                                    <option value="<%= i %>"><%= i %></option>
+                                <% } %>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select required name="day" class="form-control">
+                                <option value="">- Day -</option>
+                                <% for(var i = 0 ; i <= 31; i++){ %>
+                                    <option value="<%= i %>"><%= i %></option>
+                                <% } %>
+                            </select>
+                        </div>
                         <button>Submit</button>
                     </form>
                     <% if(obj.input.Year!="" && obj.input.Month!="" && obj.input.Days!=""){ %>
-                        <span>DOB: <%= obj.output.Date%></span>
-                    <% } %>
-                </div>
-                <div class="sub">
-                    <h3>Add Days</h3>
-                    <form action="/adddays" method="POST">
-                        <input type="date" name="date" placeholder="DOB" id="adddays_date" required>
-                        <input type="text" name="days" placeholder="Days" id="adddays_days" required>
-                        <button>Submit</button>
-                    </form>
-                    <% if(obj.input.Date!="" && obj.input.Days!=""){ %>
-                        <span>New Date: <%= obj.output.Date%></span>
+                        <div>DOB: <%= obj.output.Date%></div>
                     <% } %>
                 </div>
             </div>

@@ -34,7 +34,7 @@ routers.post("/rage", middleware_obj.validate_rage, function(req, res){
     var total_offset = parseInt(obj.input.Year * 365) + parseInt(obj.input.Month * 31) + parseInt(obj.input.Days);
     var date = new Date();
     date.setDate(date.getDate() - total_offset);
-    obj.output.Date = date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1).toString() + "-" + date.getDate();
+    obj.output.Date = date.getDate()  + "-" + (parseInt(date.getMonth()) + 1).toString() + "-" + date.getFullYear();
     Date_model.create(obj, function(err, newdata){
         if(err){
             res.redirect("back");
@@ -50,7 +50,7 @@ routers.post("/adddays", middleware_obj.validate_adddays, function(req, res){
     obj.input.Days = req.body.days;
     var date = new Date(obj.input.Date);
     date.setDate(date.getDate() + parseInt(obj.input.Days));
-    obj.output.Date = date.getFullYear() + "-" + (parseInt(date.getMonth()) + 1).toString() + "-" + date.getDate();
+    obj.output.Date = date.getDate() + "-" + (parseInt(date.getMonth()) + 1).toString() + "-" + date.getFullYear();
     Date_model.create(obj, function(err, newdata){
         if(err){
             res.redirect("back");
