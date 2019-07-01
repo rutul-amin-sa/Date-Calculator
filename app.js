@@ -4,6 +4,7 @@ var express = require("express"),
     mongoose = require("mongoose"),
     flash = require("connect-flash"),
     Date_model = require("./models/date.js"),
+    env = require("dotenv"),
     routes = require("./routes");
     obj = {
         input: {
@@ -20,7 +21,8 @@ var express = require("express"),
         }
     }
 
-mongoose.connect("mongodb://localhost:27017/date_calc", {useNewUrlParser: true});
+env.config();
+mongoose.connect("mongodb://localhost:" + process.env.DB_PORT + "/date_calc", {useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(flash())
 app.use(require("express-session")(
@@ -38,7 +40,7 @@ app.use(function(req, res, next){
 });
 app.use("/", routes);
 
-app.listen(3000, function(){
-    console.log("Server Started");
+app.listen(process.env.PORT, function(){
+    console.log("Server Started on PORT " + process.env.PORT);
 });
 
